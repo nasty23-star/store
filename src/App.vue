@@ -1,11 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <main>
+    <header class="header">
+      <nav class="navigation">
+        <router-link to="/" class="nav-link">Главная</router-link>
+
+        <router-link to="/deals" class="nav-link">Сделки</router-link>
+
+        <router-link to="/favourite" class="nav-link">Избранное</router-link>
+      </nav>
+      <router-view />\
+    </header>
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
