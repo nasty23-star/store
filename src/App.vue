@@ -138,4 +138,7 @@ nav a {
 nav a:hover {
   background: #f4f5f9;
 }
+nav a:active {
+  color: darkslategray;
+}
 </style>
