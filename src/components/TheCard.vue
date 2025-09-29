@@ -108,7 +108,7 @@
 }
 
 .main-data {
-  margin: 8px;
+  margin: 8px 0px 8px 8xp;
 }
 
 .main-data_type {
