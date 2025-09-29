@@ -15,20 +15,22 @@ const value = ref('')
               <div class="main-data_type">Аукцион</div>
               <div class="main-data_title">Пиломатериалы брус доска</div>
               <div class="main-data_geolocation">
-                <svg
-                  width="11"
-                  height="15"
-                  viewBox="0 0 11 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M5.5 14.5C5.5 14.5 10.5 9.40909 10.5 5.59091C10.5 2.66213 8.26142 0.5 5.5 0.5C2.73858 0.5 0.5 2.66213 0.5 5.59091C0.5 9.40909 5.5 14.5 5.5 14.5ZM5.49979 7.86848C6.68326 7.86848 7.64265 6.87879 7.64265 5.65795C7.64265 4.43711 6.68326 3.44743 5.49979 3.44743C4.31632 3.44743 3.35693 4.43711 3.35693 5.65795C3.35693 6.87879 4.31632 7.86848 5.49979 7.86848Z"
-                    fill="#969DC3"
-                  />
-                </svg>
+                <div class="main-data_geolocation_svg">
+                  <svg
+                    width="11"
+                    height="15"
+                    viewBox="0 0 11 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M5.5 14.5C5.5 14.5 10.5 9.40909 10.5 5.59091C10.5 2.66213 8.26142 0.5 5.5 0.5C2.73858 0.5 0.5 2.66213 0.5 5.59091C0.5 9.40909 5.5 14.5 5.5 14.5ZM5.49979 7.86848C6.68326 7.86848 7.64265 6.87879 7.64265 5.65795C7.64265 4.43711 6.68326 3.44743 5.49979 3.44743C4.31632 3.44743 3.35693 4.43711 3.35693 5.65795C3.35693 6.87879 4.31632 7.86848 5.49979 7.86848Z"
+                      fill="#969DC3"
+                    />
+                  </svg>
+                </div>
                 Санкт-Петербург, Красное Село
               </div>
               <div class="main-data_rate">Продавец <span>Торговый Дом ГОСТ</span></div>
@@ -47,10 +49,10 @@ const value = ref('')
         <div class="sell-info">
           <div class="sell-info_container">
             <div class="sell-info_top">
-              <div class="price">33 000 r</div>
+              <div class="price">33 000 ₽</div>
               <div class="quantity-wrapper">
                 <span class="text">Количество</span>
-                <span class="quantity">3 sht</span>
+                <span class="quantity">3 шт.</span>
               </div>
               <div class="value-wrapper">
                 <span class="text">Стоимость за штуку</span>
@@ -144,10 +146,17 @@ const value = ref('')
   padding-right: 8px;
   border-radius: 5px;
   height: 23px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
 }
 .main-data_geolocation svg {
   margin-left: 8px;
   margin-right: 8px;
+}
+.main-data_geolocation_svg {
+  display: flex;
+  align-items: center;
 }
 .main-data_rate {
   color: #969dc3;
@@ -172,7 +181,9 @@ const value = ref('')
   flex-direction: column;
   justify-content: center;
   width: max-content;
-  padding: 4px;
+  padding: 8px;
+  border-radius: 10px;
+  gap: 6px;
 }
 .main-data_spec span {
   color: #616ca5;
@@ -243,7 +254,7 @@ const value = ref('')
   width: 212px;
   background: #f4f5f9;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   color: #2d3b87;
   border: none;
   height: 50px;
