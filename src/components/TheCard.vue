@@ -1,4 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+interface Card {
+  id: number
+  img: string
+  type: string
+  title: string
+  location: string
+  seller: string
+  spec: string
+  description: string
+  price: number
+  quantity: number
+  favourite: boolean
+}
+
+// Принимаем пропс
+defineProps<{
+  card: Card
+}>()
+</script>
 <template>
   <div class="card">
     <div class="card-container">
@@ -6,8 +26,8 @@
         <div class="main-container">
           <div class="img"><img src="../assets//брус.png" /></div>
           <div class="main-data">
-            <div class="main-data_type">Аукцион</div>
-            <div class="main-data_title">Пиломатериалы брус доска</div>
+            <div class="main-data_type">{{ card.type }}</div>
+            <div class="main-data_title">{{ card.title }}</div>
             <div class="main-data_geolocation">
               <div class="main-data_geolocation_svg">
                 <svg
@@ -25,17 +45,16 @@
                   />
                 </svg>
               </div>
-              Санкт-Петербург, Красное Село
+              {{ card.location }}
             </div>
-            <div class="main-data_rate">Продавец <span>Торговый Дом ГОСТ</span></div>
-            <div class="main-data_spec">Вид товара <span>Стройматериалы</span></div>
+            <div class="main-data_rate">
+              Продавец <span>{{ card.seller }}</span>
+            </div>
+            <div class="main-data_spec">
+              Вид товара <span>{{ card.spec }}</span>
+            </div>
             <div class="main-data_description">
-              Пиломатериалы брус доска. Распродажа пиломатериалов в связи закрытием ЛЕСО-БАЗЫ!
-              Успейте приобрести пиломатериал со скидками до закрытия 01.06.2022 ! Мы стараемся быть
-              не такими как все и даем вам: Доставка в согласованный день, если переносим - доставка
-              бесплатно за наш счет. Весь материал соответствует гостам. Вы можете проверить
-              пиломатериалы на складе или на адресе. Если материал не соответствует заявленному
-              качеству - бесплатно меняем его.
+              {{ card.description }}
             </div>
           </div>
         </div>
@@ -43,14 +62,14 @@
       <div class="sell-info">
         <div class="sell-info_container">
           <div class="sell-info_top">
-            <div class="price">33 000 ₽</div>
+            <div class="price">{{ card.price * card.quantity }} 000 ₽</div>
             <div class="quantity-wrapper">
               <span class="text">Количество</span>
-              <span class="quantity">3 шт.</span>
+              <span class="quantity">{{ card.quantity }} шт.</span>
             </div>
             <div class="value-wrapper">
               <span class="text">Стоимость за штуку</span>
-              <span class="quantity">11 000 <span>₽</span></span>
+              <span class="quantity">{{ card.price }} 000 <span>₽</span></span>
             </div>
           </div>
           <div class="sell-info_bottom">
