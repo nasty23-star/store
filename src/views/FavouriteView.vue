@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
+import { useDataStore } from '@/stores/data'
+import TheCard from '../components/TheCard.vue'
+const cardsStore = useDataStore()
 </script>
 
 <template>
@@ -7,6 +9,7 @@ import { useRoute, useRouter } from 'vue-router'
   <router-link to="/">
     <button>Назад</button>
   </router-link>
+  <TheCard v-for="card in cardsStore.data" :key="card.id" :card="card"></TheCard>
 </template>
 
 <style scoped></style>
