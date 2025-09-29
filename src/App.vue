@@ -101,16 +101,7 @@
   </main>
 </template>
 
-<style>
-  #app {
-    display: flex;
-    justify-content: center;
-  }
-body {
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-}
+<style scoped>
 main {
   max-width: 1200px;
 }

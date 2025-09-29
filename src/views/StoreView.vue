@@ -84,7 +84,6 @@ const value = ref('')
 </template>
 
 <style scoped>
-
 .container {
   max-width: 1200px;
   font-family: Rubik, sans-serif;
