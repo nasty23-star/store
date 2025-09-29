@@ -5,11 +5,26 @@ const cardsStore = useDataStore()
 </script>
 
 <template>
-  <div>favourite</div>
   <router-link to="/">
-    <button>Назад</button>
+    <button class='button-back'>Назад</button>
   </router-link>
   <TheCard v-for="card in cardsStore.data" :key="card.id" :card="card"></TheCard>
 </template>
 
-<style scoped></style>
+<style scoped>
+.button-back {
+  width: 212px;
+  background: #f4f5f9;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3b87;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.button-back:hover,
+.favourite-back:hover {
+  background-color: #e0e3ee;
+}
+</style>
