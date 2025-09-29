@@ -137,7 +137,7 @@ nav {
   }
 
   a:active {
-    color: darkslategray;
+    color: #2f4f4f;
   }
 }
 </style>
