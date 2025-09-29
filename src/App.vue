@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
@@ -105,6 +103,7 @@
 main {
   max-width: 1200px;
 }
+
 header {
   width: 100%;
   height: 110px;
@@ -112,9 +111,9 @@ header {
   justify-content: end;
   align-items: end;
 }
+
 nav {
   width: 270px;
-
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -123,6 +122,7 @@ nav {
   font-weight: 500;
   font-size: 15px;
 }
+
 nav a {
   display: flex;
   flex-direction: column;
@@ -132,9 +132,11 @@ nav a {
   text-decoration: none;
   width: 86px;
 }
+
 nav a:hover {
   background: #f4f5f9;
 }
+
 nav a:active {
   color: darkslategray;
 }
