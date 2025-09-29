@@ -121,23 +121,23 @@ nav {
   font-family: Rubik, sans-serif;
   font-weight: 500;
   font-size: 15px;
-}
 
-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4px;
-  padding-top: 4px;
-  text-decoration: none;
-  width: 86px;
-}
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    text-decoration: none;
+    width: 86px;
+  }
 
-nav a:hover {
-  background: #f4f5f9;
-}
+  a:hover {
+    background: #f4f5f9;
+  }
 
-nav a:active {
-  color: darkslategray;
+  a:active {
+    color: darkslategray;
+  }
 }
 </style>
