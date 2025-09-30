@@ -127,7 +127,7 @@ defineProps<{
 }
 
 .main-data {
-  margin: 8px 0px 8px 8xp;
+  margin: 8px 0px 8px 8px;
 }
 
 .main-data_type {
