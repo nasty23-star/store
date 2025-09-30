@@ -45,6 +45,7 @@ defineProps<{
             </div>
           </div>
         </div>
+        <button class="button-pay">Оплатить</button>
       </div>
       <div class="sell-info">
         <div class="sell-info_container">
@@ -272,7 +273,8 @@ defineProps<{
 }
 
 .button-add:hover,
-.favourite-add:hover {
+.favourite-add:hover,
+.button-pay:hover {
   background-color: #e0e3ee;
 }
 
@@ -307,5 +309,18 @@ defineProps<{
 
 .favourite-add:hover .tooltip {
   visibility: visible;
+}
+
+.button-pay {
+  margin-left: 16px;
+  margin-bottom: 10px;
+  width: 212px;
+  background: #f4f5f9;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3b87;
+  border: none;
+  height: 40px;
+  border-radius: 10px;
 }
 </style>
