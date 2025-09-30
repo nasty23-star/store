@@ -1,20 +1,49 @@
 <script setup lang="ts">
 import { useDataStore } from '@/stores/data'
 import TheCard from '../components/TheCard.vue'
-import { computed } from 'vue'
+import TheSorting from '../components/TheSorting.vue'
+import { computed, onMounted, ref } from 'vue'
+import type { ICard } from '@/types/card'
+
 const cardsStore = useDataStore()
 const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
+
+// Переменная для хранения карточек во время сортировки
+let visibleCards = ref<ICard[]>([])
+
 const updateDeal = (cardId: number) => {
   cardsStore.updateDeal(cardId, true)
 }
+
+const chooseAll = () => {
+  return (visibleCards.value = favouriteCards.value)
+}
+
+const chooseDirect = () => {
+  return (visibleCards.value = favouriteCards.value.filter(
+    (card) => card.type !== 'Прямые продажи',
+  ))
+}
+
+const chooseAuction = () => {
+  return (visibleCards.value = favouriteCards.value.filter((card) => card.type !== 'Аукцион'))
+}
+
+onMounted(() => {
+  visibleCards.value = favouriteCards.value
+})
 </script>
 
 <template>
-  <router-link to="/">
-    <button class="button-back">Назад</button>
-  </router-link>
+  <div class="sorting">
+    <TheSorting
+      @update:all="chooseAll"
+      @update:direct="chooseDirect"
+      @update:auction="chooseAuction"
+    ></TheSorting>
+  </div>
   <TheCard
-    v-for="card in favouriteCards"
+    v-for="card in visibleCards"
     :key="card.id"
     :card="card"
     :favourite="card.favourite"
@@ -23,19 +52,11 @@ const updateDeal = (cardId: number) => {
 </template>
 
 <style scoped>
-.button-back {
-  width: 212px;
-  background: #f4f5f9;
-  font-size: 15px;
-  font-weight: 600;
-  color: #2d3b87;
-  border: none;
-  height: 50px;
-  border-radius: 10px;
-}
-
-.button-back:hover,
-.favourite-back:hover {
-  background-color: #e0e3ee;
+.sorting {
+  width: 1200px;
+  height: 48px;
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: start;
 }
 </style>
