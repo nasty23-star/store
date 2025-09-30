@@ -45,7 +45,7 @@ defineProps<{
             </div>
           </div>
         </div>
-        <button class="button-pay">Оплатить</button>
+        <button v-if='card.deal' class="button-pay">Оплатить</button>
       </div>
       <div class="sell-info">
         <div class="sell-info_container">
