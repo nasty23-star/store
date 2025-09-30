@@ -76,6 +76,7 @@ defineProps<{
                   fill="#2D3B87"
                 />
               </svg>
+              <span class="tooltip">Добавить в избранное</span>
             </button>
           </div>
         </div>
@@ -285,5 +286,26 @@ defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f4f5f9;
+  color: #616ca5;
+  text-align: center;
+  border-radius: 3px;
+  padding: 5px;
+  z-index: 1;
+  width: max-content;
+  margin-bottom: 4px;
+}
+
+.favourite-add:hover .tooltip {
+  visibility: visible;
 }
 </style>
