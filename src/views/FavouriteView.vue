@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useDataStore } from '@/stores/data'
 import TheCard from '../components/TheCard.vue'
+import { computed } from 'vue'
 const cardsStore = useDataStore()
+const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
 </script>
 
 <template>
@@ -9,7 +11,7 @@ const cardsStore = useDataStore()
     <button class="button-back">Назад</button>
   </router-link>
   <TheCard
-    v-for="card in cardsStore.data"
+    v-for="card in favouriteCards"
     :key="card.id"
     :card="card"
     :favourite="card.favourite"
