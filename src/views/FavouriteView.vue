@@ -4,6 +4,9 @@ import TheCard from '../components/TheCard.vue'
 import { computed } from 'vue'
 const cardsStore = useDataStore()
 const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
+const updateDeal = (cardId: number) => {
+  cardsStore.updateDeal(cardId, true)
+}
 </script>
 
 <template>
@@ -15,6 +18,7 @@ const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favo
     :key="card.id"
     :card="card"
     :favourite="card.favourite"
+    @update:deal="updateDeal(card.id)"
   ></TheCard>
 </template>
 
