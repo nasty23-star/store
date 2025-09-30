@@ -295,5 +295,8 @@ defineProps<{
   border-radius: 10px;
   gap: 8px;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
