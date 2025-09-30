@@ -142,7 +142,7 @@ export const useDataStore = defineStore('data', () => {
       price: 42,
       quantity: 7,
       favourite: true,
-    }
+    },
   ])
   return { data }
 })
