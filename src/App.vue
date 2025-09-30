@@ -1,7 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
+const showBackButton = computed(() => route.path === '/favourite' || route.path === '/deals')
+</script>
 
 <template>
-  <main>
+  <div class="container">
+    <router-link v-if="showBackButton" to="/">
+      <button class="button-back">Назад</button>
+    </router-link>
     <header class="header">
       <nav class="navigation">
         <router-link to="/favourite" class="nav-link"
@@ -96,20 +105,35 @@
       </nav>
     </header>
     <router-view />
-  </main>
+  </div>
 </template>
 
 <style scoped>
-main {
+.container {
   max-width: 1200px;
 }
+.button-back {
+  width: 212px;
+  background: #f4f5f9;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3b87;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
 
+.button-back:hover {
+  background-color: #e0e3ee;
+}
 header {
   width: 100%;
-  height: 110px;
+  height: 70px;
   display: flex;
   justify-content: end;
   align-items: end;
+  margin-bottom: 70px;
 }
 
 nav {
