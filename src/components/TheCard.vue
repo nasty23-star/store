@@ -77,7 +77,9 @@ defineProps<{
                   fill="#2D3B87"
                 />
               </svg>
-              <span class="tooltip">Добавить в избранное</span>
+              <span class="tooltip">{{
+                card.favourite ? 'Удалить из избранного' : 'Добавить в избранное'
+              }}</span>
             </button>
           </div>
         </div>
