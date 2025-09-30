@@ -8,7 +8,12 @@ const cardsStore = useDataStore()
   <router-link to="/">
     <button class="button-back">Назад</button>
   </router-link>
-  <TheCard v-for="card in cardsStore.data" :key="card.id" :card="card"></TheCard>
+  <TheCard
+    v-for="card in cardsStore.data"
+    :key="card.id"
+    :card="card"
+    :favourite="card.favourite"
+  ></TheCard>
 </template>
 
 <style scoped>

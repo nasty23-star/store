@@ -16,6 +16,7 @@ export const useDataStore = defineStore('data', () => {
       price: 11,
       quantity: 3,
       favourite: false,
+      deal: true,
     },
     {
       id: 2,
@@ -30,6 +31,7 @@ export const useDataStore = defineStore('data', () => {
       price: 15,
       quantity: 2,
       favourite: true,
+      deal: false,
     },
     {
       id: 3,
@@ -44,6 +46,7 @@ export const useDataStore = defineStore('data', () => {
       price: 38,
       quantity: 4,
       favourite: false,
+      deal: true,
     },
     {
       id: 4,
@@ -58,6 +61,7 @@ export const useDataStore = defineStore('data', () => {
       price: 40,
       quantity: 1,
       favourite: true,
+      deal: false,
     },
     {
       id: 5,
@@ -72,6 +76,7 @@ export const useDataStore = defineStore('data', () => {
       price: 4,
       quantity: 5,
       favourite: false,
+      deal: true,
     },
     {
       id: 6,
@@ -86,6 +91,7 @@ export const useDataStore = defineStore('data', () => {
       price: 3,
       quantity: 2,
       favourite: false,
+      deal: true,
     },
     {
       id: 7,
@@ -100,6 +106,7 @@ export const useDataStore = defineStore('data', () => {
       price: 8,
       quantity: 6,
       favourite: false,
+      deal: true,
     },
     {
       id: 8,
@@ -114,6 +121,7 @@ export const useDataStore = defineStore('data', () => {
       price: 5,
       quantity: 1,
       favourite: true,
+      deal: false,
     },
     {
       id: 9,
@@ -128,6 +136,7 @@ export const useDataStore = defineStore('data', () => {
       price: 35,
       quantity: 6,
       favourite: true,
+      deal: false,
     },
     {
       id: 10,
@@ -142,6 +151,7 @@ export const useDataStore = defineStore('data', () => {
       price: 42,
       quantity: 7,
       favourite: true,
+      deal: true,
     },
   ])
   return { data }

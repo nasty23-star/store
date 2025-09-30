@@ -10,4 +10,5 @@ export interface ICard {
   price: number
   quantity: number
   favourite: boolean
+  deal: boolean
 }
