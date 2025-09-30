@@ -95,7 +95,7 @@
         >
       </nav>
     </header>
-    <router-view />\
+    <router-view />
   </main>
 </template>
 
