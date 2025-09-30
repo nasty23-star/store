@@ -1,22 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-interface Card {
-  id: number
-  img: string
-  type: string
-  title: string
-  location: string
-  seller: string
-  spec: string
-  description: string
-  price: number
-  quantity: number
-  favourite: boolean
-}
+import type { ICard } from '../types/card'
 
 // Принимаем пропс
 defineProps<{
-  card: Card
+  card: ICard
 }>()
 </script>
 <template>
