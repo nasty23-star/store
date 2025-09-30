@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { ICard } from '../types/card'
-
+import { defineEmits } from 'vue'
 // Принимаем пропс
 defineProps<{
   card: ICard
+}>()
+const emit = defineEmits<{
+  'update:deal': [value: boolean]
 }>()
 </script>
 <template>
@@ -45,7 +48,6 @@ defineProps<{
             </div>
           </div>
         </div>
-        <button v-if='card.deal' class="button-pay">Оплатить</button>
       </div>
       <div class="sell-info">
         <div class="sell-info_container">
@@ -61,7 +63,9 @@ defineProps<{
             </div>
           </div>
           <div class="sell-info_bottom">
-            <button class="button-add">Добавить в сделки</button>
+            <button class="button-add" @click="$emit('update:deal', true)">
+              Добавить в сделки
+            </button>
             <button class="favourite-add">
               <svg
                 width="20"
@@ -275,8 +279,7 @@ defineProps<{
 }
 
 .button-add:hover,
-.favourite-add:hover,
-.button-pay:hover {
+.favourite-add:hover {
   background-color: #e0e3ee;
 }
 
@@ -311,18 +314,5 @@ defineProps<{
 
 .favourite-add:hover .tooltip {
   visibility: visible;
-}
-
-.button-pay {
-  margin-left: 16px;
-  margin-bottom: 10px;
-  width: 212px;
-  background: #f4f5f9;
-  font-size: 15px;
-  font-weight: 600;
-  color: #2d3b87;
-  border: none;
-  height: 40px;
-  border-radius: 10px;
 }
 </style>
