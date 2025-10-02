@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useDataStore = defineStore('data', () => {
@@ -154,18 +154,41 @@ export const useDataStore = defineStore('data', () => {
       deal: false,
     },
   ])
+
+  const loadFromLocalStorage = () => {
+    const storedData = localStorage.getItem('data')
+    if (storedData) {
+      const parsedData = JSON.parse(storedData)
+      if (Array.isArray(parsedData)) {
+        data.value = parsedData
+      }
+    }
+  }
+
+  // Инициализируем сразу при создании стора
+
+  loadFromLocalStorage()
+
+  watch(
+    data,
+    (newData) => {
+      localStorage.setItem('data', JSON.stringify(newData))
+    },
+    { deep: true }, // важно для отслеживания вложенных изменений
+  )
+
   const updateDeal = (cardId: number, deal: boolean) => {
     const card = data.value.find((card) => card.id === cardId)
     if (card) {
       card.deal = deal
-      localStorage.setItem('data', JSON.stringify(data))
     }
   }
-  const updateFavourite = (cardId: number, p0: boolean) => {
+  const updateFavourite = (cardId: number) => {
     const card = data.value.find((card) => card.id === cardId)
     if (card) {
       card.favourite = !card.favourite // ИНВЕРТИРУЕМ текущее значение
     }
   }
-  return { data, updateDeal, updateFavourite }
+
+  return { data, updateDeal, updateFavourite, loadFromLocalStorage }
 })
