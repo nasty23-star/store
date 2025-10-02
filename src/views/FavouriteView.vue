@@ -39,9 +39,10 @@ const toggleFavourite = (cardId: number) => {
   // Находим карточку и инвертируем значение favourite
   const card = cardsStore.data.find((card) => card.id === cardId)
   if (card) {
-    cardsStore.updateFavourite(cardId, !card.favourite)
+    cardsStore.updateFavourite(cardId)
   }
 }
+
 onMounted(() => {
   visibleCards.value = favouriteCards.value
 })
