@@ -8,7 +8,7 @@ defineProps<{
 
 const emit = defineEmits<{
   'update:deal': [value: boolean]
-  toggleFavourite: [value: number]
+  'toggleFavourite': [value: number]
 }>()
 
 const handleFavourite = (cardId: number) => {
