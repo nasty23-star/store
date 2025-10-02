@@ -161,5 +161,11 @@ export const useDataStore = defineStore('data', () => {
       localStorage.setItem('data', JSON.stringify(data))
     }
   }
-  return { data, updateDeal }
+  const updateFavourite = (cardId: number, p0: boolean) => {
+    const card = data.value.find((card) => card.id === cardId)
+    if (card) {
+      card.favourite = !card.favourite // ИНВЕРТИРУЕМ текущее значение
+    }
+  }
+  return { data, updateDeal, updateFavourite }
 })

@@ -2,14 +2,20 @@
 import { useDataStore } from '@/stores/data'
 import TheCard from '../components/TheCard.vue'
 import TheSorting from '../components/TheSorting.vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import type { ICard } from '@/types/card'
 
 const cardsStore = useDataStore()
+
 const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
 
 // Переменная для хранения карточек во время сортировки
 let visibleCards = ref<ICard[]>([])
+
+// Следим за изменениями favouriteCards и обновляем visibleCards
+watch(favouriteCards, (newFavouriteCards) => {
+  visibleCards.value = newFavouriteCards
+})
 
 const updateDeal = (cardId: number) => {
   cardsStore.updateDeal(cardId, true)
@@ -29,6 +35,13 @@ const chooseAuction = () => {
   return (visibleCards.value = favouriteCards.value.filter((card) => card.type !== 'Аукцион'))
 }
 
+const toggleFavourite = (cardId: number) => {
+  // Находим карточку и инвертируем значение favourite
+  const card = cardsStore.data.find((card) => card.id === cardId)
+  if (card) {
+    cardsStore.updateFavourite(cardId, !card.favourite)
+  }
+}
 onMounted(() => {
   visibleCards.value = favouriteCards.value
 })
@@ -48,6 +61,7 @@ onMounted(() => {
     :card="card"
     :favourite="card.favourite"
     @update:deal="updateDeal(card.id)"
+    @toggle-favourite="toggleFavourite"
   ></TheCard>
 </template>
 

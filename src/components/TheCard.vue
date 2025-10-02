@@ -5,9 +5,15 @@ import { defineEmits } from 'vue'
 defineProps<{
   card: ICard
 }>()
+
 const emit = defineEmits<{
   'update:deal': [value: boolean]
+  toggleFavourite: [value: number]
 }>()
+
+const handleFavourite = (cardId: number) => {
+  emit('toggleFavourite', cardId)
+}
 </script>
 <template>
   <div class="card">
@@ -66,7 +72,7 @@ const emit = defineEmits<{
             <button class="button-add" @click="$emit('update:deal', true)">
               Добавить в сделки
             </button>
-            <button class="favourite-add">
+            <button class="favourite-add" @click="handleFavourite(card.id)">
               <svg
                 width="20"
                 height="20"
@@ -81,9 +87,9 @@ const emit = defineEmits<{
                   fill="#2D3B87"
                 />
               </svg>
-              <span class="tooltip">{{
-                card.favourite ? 'Удалить из избранного' : 'Добавить в избранное'
-              }}</span>
+              <span class="tooltip">
+                {{ card.favourite ? 'Удалить из избранного' : 'Добавить в избранное' }}
+              </span>
             </button>
           </div>
         </div>
