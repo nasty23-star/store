@@ -15,7 +15,7 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
     </div>
     <header class="header">
       <nav class="navigation">
-        <router-link to="/favourite" class="nav-link"
+        <router-link to="/favourite" class="nav-link" :class="{ active: $route.path === '/home' }"
           ><svg
             width="20"
             height="20"
@@ -134,6 +134,12 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
 .button-back:hover {
   background-color: #e0e3ee;
 }
+
+.router-link-active {
+  background-color: #e0e3ee;
+  color: #2d3b87;
+}
+
 header {
   width: 100%;
   height: 70px;
