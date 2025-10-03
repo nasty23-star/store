@@ -8,11 +8,11 @@ defineProps<{
 
 const emit = defineEmits<{
   'update:deal': [value: boolean]
-  'toggleFavourite': [value: number]
+  'toggle-favourite': [value: number]
 }>()
 
 const handleFavourite = (cardId: number) => {
-  emit('toggleFavourite', cardId)
+  emit('toggle-favourite', cardId)
 }
 </script>
 <template>

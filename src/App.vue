@@ -8,10 +8,10 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
 
 <template>
   <div class="container">
-    <div class='button-container'>
-    <router-link v-if="showBackButton" to="/">
-      <button class="button-back">Назад</button>
-    </router-link>
+    <div class="button-container">
+      <router-link v-if="showBackButton" to="/">
+        <button class="button-back">Назад</button>
+      </router-link>
     </div>
     <header class="header">
       <nav class="navigation">
@@ -129,7 +129,6 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
   color: #2d3b87;
   border: none;
   border-radius: 10px;
-
 }
 
 .button-back:hover {
