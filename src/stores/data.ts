@@ -1,8 +1,9 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-
+import type { ICard } from '@/types/card'
 export const useDataStore = defineStore('data', () => {
-  const data = ref([
+  const data = ref<ICard[]>([])
+  const initialData: ICard[] = [
     {
       id: 1,
       img: 'brus',
@@ -153,16 +154,24 @@ export const useDataStore = defineStore('data', () => {
       favourite: true,
       deal: false,
     },
-  ])
+  ]
 
   const loadFromLocalStorage = () => {
     const storedData = localStorage.getItem('data')
+
     if (storedData) {
-      const parsedData = JSON.parse(storedData)
-      if (Array.isArray(parsedData)) {
-        data.value = parsedData
+      try {
+        const parsedData = JSON.parse(storedData)
+        if (Array.isArray(parsedData)) {
+          data.value = parsedData
+          return // Выходим, если данные успешно загружены
+        }
+      } catch (error) {
+        console.error('Error parsing localStorage data:', error)
       }
     }
+
+    data.value = [...initialData]
   }
 
   // Инициализируем сразу при создании стора
