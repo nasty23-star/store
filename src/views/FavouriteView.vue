@@ -59,7 +59,12 @@ onMounted(() => {
     ></TheSorting>
   </div>
 
-  <div v-if="!visibleCards.length" class="empty-favourite">В избранном пока что пусто</div>
+  <div v-if="!visibleCards.length && !cardsStore.data" class="empty-favourite">
+    В избранном пока что пусто
+  </div>
+  <div v-if="!visibleCards.length && cardsStore.data" class="empty-favourite">
+    Под условия ничего не подходит
+  </div>
   <div v-else>
     <TheCard
       v-for="card in visibleCards"
