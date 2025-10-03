@@ -59,14 +59,17 @@ onMounted(() => {
     ></TheSorting>
   </div>
 
-  <TheCard
-    v-for="card in visibleCards"
-    :key="card.id"
-    :card="card"
-    :favourite="card.favourite"
-    @update:deal="updateDeal(card.id)"
-    @toggle-favourite="toggleFavourite"
-  ></TheCard>
+  <div v-if="!visibleCards.length" class="empty-favourite">В избранном пока что пусто</div>
+  <div v-else>
+    <TheCard
+      v-for="card in visibleCards"
+      :key="card.id"
+      :card="card"
+      :favourite="card.favourite"
+      @update:deal="updateDeal(card.id)"
+      @toggle-favourite="toggleFavourite"
+    ></TheCard>
+  </div>
 </template>
 
 <style scoped>
@@ -76,5 +79,15 @@ onMounted(() => {
   margin-bottom: 36px;
   display: flex;
   justify-content: start;
+}
+
+.empty-favourite {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  color: #2d3b87;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 25px;
 }
 </style>
