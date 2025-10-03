@@ -27,12 +27,12 @@ const chooseAll = () => {
 
 const chooseAuction = () => {
   return (visibleCards.value = favouriteCards.value.filter(
-    (card) => card.type !== 'Прямые продажи',
+    (card) => card.type !== 'Прямые продажи' && card.type !== 'Все'
   ))
 }
 
 const chooseDirect = () => {
-  return (visibleCards.value = favouriteCards.value.filter((card) => card.type !== 'Аукцион'))
+  return (visibleCards.value = favouriteCards.value.filter((card) => card.type !== 'Аукцион' && card.type !== 'Все'))
 }
 
 const toggleFavourite = (cardId: number) => {
