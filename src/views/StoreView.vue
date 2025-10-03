@@ -17,7 +17,7 @@ watch(
   (newData) => {
     visibleCards.value = newData
   },
-  { immediate: true } // immediate: true чтобы выполнить сразу при создании
+  { immediate: true }, // immediate: true чтобы выполнить сразу при создании
 )
 
 const updateDeal = (cardId: number) => {

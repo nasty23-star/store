@@ -141,7 +141,6 @@ const handleFavourite = (cardId: number) => {
   height: 38px;
   color: #2d3b87;
   font-weight: 500;
-  font-style: medium;
   font-size: 15px;
   line-height: 125%;
 }
@@ -151,7 +150,6 @@ const handleFavourite = (cardId: number) => {
   border-radius: 5px;
   border: none;
   font-weight: 400;
-  font-style: regular;
   font-size: 13px;
   height: 13px;
   color: #616ca5;
