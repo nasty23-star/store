@@ -25,13 +25,13 @@ const chooseAll = () => {
   return (visibleCards.value = favouriteCards.value)
 }
 
-const chooseDirect = () => {
+const chooseAuction = () => {
   return (visibleCards.value = favouriteCards.value.filter(
     (card) => card.type !== 'Прямые продажи',
   ))
 }
 
-const chooseAuction = () => {
+const chooseDirect = () => {
   return (visibleCards.value = favouriteCards.value.filter((card) => card.type !== 'Аукцион'))
 }
 
