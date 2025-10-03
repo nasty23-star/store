@@ -104,7 +104,6 @@ const handleFavourite = (cardId: number) => {
   border: 1px solid #e0e3ee;
   border-radius: 20px;
   margin: auto;
-  margin-top: 24px;
 }
 
 .card-container {
