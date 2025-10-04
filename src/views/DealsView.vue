@@ -93,6 +93,16 @@ const toggleFavourite = (cardId: number) => {
   justify-content: space-between;
 }
 
+.empty-message {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  color: #2d3b87;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 25px;
+}
+
 .button-pay {
   margin-left: 16px;
   margin-bottom: 10px;

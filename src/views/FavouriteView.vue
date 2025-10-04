@@ -59,10 +59,10 @@ onMounted(() => {
     ></TheSorting>
   </div>
 
-  <div v-if="!visibleCards.length && !cardsStore.data" class="empty-favourite">
+  <div v-if="!visibleCards.length && !cardsStore.data" class="message">
     В избранном пока что пусто
   </div>
-  <div v-if="!visibleCards.length && cardsStore.data" class="empty-favourite">
+  <div v-if="!visibleCards.length && cardsStore.data" class="empty-message">
     Под условия ничего не подходит
   </div>
   <div v-else>
@@ -86,7 +86,7 @@ onMounted(() => {
   justify-content: start;
 }
 
-.empty-favourite {
+.empty-message {
   width: auto;
   display: flex;
   justify-content: center;
