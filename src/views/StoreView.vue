@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
 import type { ICard } from '@/types/card'
 import { useDataStore } from '@/stores/data'
@@ -8,44 +8,109 @@ import TheSearching from '@/components/TheSearching.vue'
 const cardsStore = useDataStore()
 
 // Переменная для хранения видимых карточек
-const visibleCards = ref<ICard[]>([])
+// const visibleCards = ref<ICard[]>([])
 
-visibleCards.value = cardsStore.data
+// visibleCards.value = cardsStore.data
 
-watch(
-  () => cardsStore.data,
-  (newData) => {
-    visibleCards.value = newData
-  },
-  { immediate: true }, // immediate: true чтобы выполнить сразу при создании
-)
+// watch(
+//   () => cardsStore.data,
+//   (newData) => {
+//     visibleCards.value = newData
+//   },
+//   { immediate: true }, // immediate: true чтобы выполнить сразу при создании
+// )
+
+// const updateDeal = (cardId: number) => {
+//   cardsStore.updateDeal(cardId, true)
+// }
+
+// const chooseAll = () => {
+//   visibleCards.value = cardsStore.data
+// }
+
+// const chooseDirect = () => {
+//   return (visibleCards.value = cardsStore.data.filter(
+//     (card) => card.type !== 'Аукцион' && card.type !== 'Все',
+//   ))
+// }
+
+// const chooseAuction = () => {
+//   return (visibleCards.value = cardsStore.data.filter(
+//     (card) => card.type !== 'Прямые продажи' && card.type !== 'Все',
+//   ))
+// }
+
+// const toggleFavourite = (cardId: number) => {
+//   // Находим карточку и инвертируем значение favourite
+//   const card = cardsStore.data.find((card) => card.id === cardId)
+//   if (card) {
+//     cardsStore.updateFavourite(cardId)
+//   }
+// }
+// Используем computed для реактивного отображения карточек В сделках
+const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === true))
+
+// Состояния фильтрации
+const search = ref('')
+const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
+
+// Единый computed для всех фильтров
+const visibleCards = computed(() => {
+  let filteredCards = dealCards.value
+
+  // Применяем фильтр по типу
+  switch (currentFilter.value) {
+    case 'direct':
+      filteredCards = filteredCards.filter((card) => card.type === 'Прямые продажи')
+      break
+    case 'auction':
+      filteredCards = filteredCards.filter((card) => card.type === 'Аукцион')
+      break
+    case 'all':
+    default:
+      // Все карточки, без фильтрации по типу
+      break
+  }
+
+  // Применяем поиск, если есть поисковый запрос
+  if (search.value.trim()) {
+    const query = search.value.toLowerCase().trim()
+    filteredCards = filteredCards.filter(
+      (card) =>
+        card.title.toLowerCase().includes(query) ||
+        card.description.toLowerCase().includes(query) ||
+        card.seller.toLowerCase().includes(query) ||
+        card.location.toLowerCase().includes(query) ||
+        card.spec.toLowerCase().includes(query) ||
+        card.type.toLowerCase().includes(query),
+    )
+  }
+
+  return filteredCards
+})
 
 const updateDeal = (cardId: number) => {
-  cardsStore.updateDeal(cardId, true)
+  cardsStore.updateDeal(cardId, false)
 }
 
 const chooseAll = () => {
-  visibleCards.value = cardsStore.data
+  currentFilter.value = 'all'
 }
 
 const chooseDirect = () => {
-  return (visibleCards.value = cardsStore.data.filter(
-    (card) => card.type !== 'Аукцион' && card.type !== 'Все',
-  ))
+  currentFilter.value = 'direct'
 }
 
 const chooseAuction = () => {
-  return (visibleCards.value = cardsStore.data.filter(
-    (card) => card.type !== 'Прямые продажи' && card.type !== 'Все',
-  ))
+  currentFilter.value = 'auction'
 }
 
 const toggleFavourite = (cardId: number) => {
-  // Находим карточку и инвертируем значение favourite
-  const card = cardsStore.data.find((card) => card.id === cardId)
-  if (card) {
-    cardsStore.updateFavourite(cardId)
-  }
+  cardsStore.updateFavourite(cardId)
+}
+
+const searchInfo = (query: string) => {
+  search.value = query
 }
 </script>
 
@@ -57,17 +122,28 @@ const toggleFavourite = (cardId: number) => {
         @update:direct="chooseDirect"
         @update:auction="chooseAuction"
       ></TheSorting>
-      <TheSearching></TheSearching>
+      <TheSearching
+        v-model="search"
+        placeholder="Поиск товаров..."
+        @search-info="searchInfo"
+      ></TheSearching>
     </div>
+    <!-- Сообщение если нет карточек в сделках -->
+    <div v-if="dealCards.length === 0" class="empty-message">В сделках пока что пусто</div>
 
-    <TheCard
-      v-for="card in visibleCards"
-      :key="card.id"
-      :card="card"
-      :favourite="card.favourite"
-      @update:deal="updateDeal(card.id)"
-      @toggle-favourite="toggleFavourite"
-    ></TheCard>
+    <div v-else-if="visibleCards.length === 0" class="empty-message">
+      Под выбранные условия ничего не подходит
+    </div>
+    <div v-else>
+      <TheCard
+        v-for="card in visibleCards"
+        :key="card.id"
+        :card="card"
+        :favourite="card.favourite"
+        @update:deal="updateDeal(card.id)"
+        @toggle-favourite="toggleFavourite"
+      ></TheCard>
+    </div>
   </div>
 </template>
 
@@ -83,6 +159,16 @@ const toggleFavourite = (cardId: number) => {
   height: 48px;
   display: flex;
   justify-content: space-between;
+}
+
+.empty-message {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  color: #2d3b87;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 25px;
 }
 
 .favourite-add:hover .tooltip {

@@ -11,41 +11,67 @@ const cardsStore = useDataStore()
 // Используем computed для реактивного отображения карточек В сделках
 const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === true))
 
-// Переменная для фильтрации (если нужна дополнительная фильтрация)
-const visibleCards = ref<ICard[]>([])
+// Состояния фильтрации
+const search = ref('')
+const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
-// Следим за изменениями карточек в сделках
-watch(
-  dealCards,
-  (newDealCards) => {
-    visibleCards.value = newDealCards
-  },
-  { immediate: true },
-)
+// Единый computed для всех фильтров
+const visibleCards = computed(() => {
+  let filteredCards = dealCards.value
+
+  // Применяем фильтр по типу
+  switch (currentFilter.value) {
+    case 'direct':
+      filteredCards = filteredCards.filter((card) => card.type === 'Прямые продажи')
+      break
+    case 'auction':
+      filteredCards = filteredCards.filter((card) => card.type === 'Аукцион')
+      break
+    case 'all':
+    default:
+      // Все карточки, без фильтрации по типу
+      break
+  }
+
+  // Применяем поиск, если есть поисковый запрос
+  if (search.value.trim()) {
+    const query = search.value.toLowerCase().trim()
+    filteredCards = filteredCards.filter(
+      (card) =>
+        card.title.toLowerCase().includes(query) ||
+        card.description.toLowerCase().includes(query) ||
+        card.seller.toLowerCase().includes(query) ||
+        card.location.toLowerCase().includes(query) ||
+        card.spec.toLowerCase().includes(query) ||
+        card.type.toLowerCase().includes(query),
+    )
+  }
+
+  return filteredCards
+})
 
 const updateDeal = (cardId: number) => {
-  // Устанавливаем deal = false, карточка автоматически исчезнет из dealCards
   cardsStore.updateDeal(cardId, false)
 }
 
 const chooseAll = () => {
-  visibleCards.value = dealCards.value
+  currentFilter.value = 'all'
 }
 
 const chooseDirect = () => {
-  visibleCards.value = dealCards.value.filter(
-    (card) => card.type !== 'Аукцион' && card.type !== 'Все',
-  )
+  currentFilter.value = 'direct'
 }
 
 const chooseAuction = () => {
-  visibleCards.value = dealCards.value.filter(
-    (card) => card.type !== 'Прямые продажи' && card.type !== 'Все',
-  )
+  currentFilter.value = 'auction'
 }
 
 const toggleFavourite = (cardId: number) => {
   cardsStore.updateFavourite(cardId)
+}
+
+const searchInfo = (query: string) => {
+  search.value = query
 }
 </script>
 
@@ -57,7 +83,11 @@ const toggleFavourite = (cardId: number) => {
         @update:direct="chooseDirect"
         @update:auction="chooseAuction"
       ></TheSorting>
-      <TheSearching></TheSearching>
+      <TheSearching
+        v-model="search"
+        placeholder="Поиск товаров..."
+        @search-info="searchInfo"
+      ></TheSearching>
     </div>
 
     <!-- Сообщение если нет карточек в сделках -->
@@ -66,16 +96,16 @@ const toggleFavourite = (cardId: number) => {
     <div v-else-if="visibleCards.length === 0" class="empty-message">
       Под выбранные условия ничего не подходит
     </div>
-
-    <TheCard
-      v-else
-      v-for="card in visibleCards"
-      :key="card.id"
-      :card="card"
-      :favourite="card.favourite"
-      @update:deal="updateDeal(card.id)"
-      @toggle-favourite="toggleFavourite"
-    ></TheCard>
+    <div v-else>
+      <TheCard
+        v-for="card in visibleCards"
+        :key="card.id"
+        :card="card"
+        :favourite="card.favourite"
+        @update:deal="updateDeal(card.id)"
+        @toggle-favourite="toggleFavourite"
+      ></TheCard>
+    </div>
   </div>
 </template>
 

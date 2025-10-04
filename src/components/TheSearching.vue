@@ -1,7 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineEmits, ref } from 'vue'
+// const props = defineProps({['modelValue', 'type'], ['placeholder', 'Поиск...']})
+// const emit = defineEmits<{
+//   (e: 'search-info', value: string): void
+// }>()
+const props = defineProps<{
+  modelValue: string
+  placeholder: string
+}>()
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+const inputValue = ref(props.modelValue)
+const searchInfo = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  inputValue.value = target.value
+  emit('update:modelValue', target.value)
+}
+</script>
 <template>
   <div class="searching">
-    <input type="text" placeholder="Поиск по наименованию" /><button>
+    <input type="text" :value="inputValue" :placeholder="placeholder" @input="searchInfo" />
+    <button @click="searchInfo">
       <svg
         width="20"
         height="20"
