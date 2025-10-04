@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
-import { ref, watch, computed } from 'vue'
+import { ref, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
-import type { ICard } from '@/types/card'
+
 import { useDataStore } from '@/stores/data'
 
 const cardsStore = useDataStore()

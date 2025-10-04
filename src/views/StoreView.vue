@@ -1,52 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
-import type { ICard } from '@/types/card'
 import { useDataStore } from '@/stores/data'
 import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
 const cardsStore = useDataStore()
 
-// Переменная для хранения видимых карточек
-// const visibleCards = ref<ICard[]>([])
-
-// visibleCards.value = cardsStore.data
-
-// watch(
-//   () => cardsStore.data,
-//   (newData) => {
-//     visibleCards.value = newData
-//   },
-//   { immediate: true }, // immediate: true чтобы выполнить сразу при создании
-// )
-
-// const updateDeal = (cardId: number) => {
-//   cardsStore.updateDeal(cardId, true)
-// }
-
-// const chooseAll = () => {
-//   visibleCards.value = cardsStore.data
-// }
-
-// const chooseDirect = () => {
-//   return (visibleCards.value = cardsStore.data.filter(
-//     (card) => card.type !== 'Аукцион' && card.type !== 'Все',
-//   ))
-// }
-
-// const chooseAuction = () => {
-//   return (visibleCards.value = cardsStore.data.filter(
-//     (card) => card.type !== 'Прямые продажи' && card.type !== 'Все',
-//   ))
-// }
-
-// const toggleFavourite = (cardId: number) => {
-//   // Находим карточку и инвертируем значение favourite
-//   const card = cardsStore.data.find((card) => card.id === cardId)
-//   if (card) {
-//     cardsStore.updateFavourite(cardId)
-//   }
-// }
 // Используем computed для реактивного отображения карточек В сделках
 const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === true))
 

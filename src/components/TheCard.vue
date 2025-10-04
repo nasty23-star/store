@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ICard } from '../types/card'
-import { defineEmits, computed } from 'vue'
+import { defineEmits } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
