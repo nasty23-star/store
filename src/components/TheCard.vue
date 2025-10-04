@@ -14,6 +14,10 @@ const emit = defineEmits<{
 const handleFavourite = (cardId: number) => {
   emit('toggle-favourite', cardId)
 }
+
+// const handleDeal = (cardId: number) => {
+//   emit('toggle-deal', cardId)
+// }
 </script>
 <template>
   <div class="card">
