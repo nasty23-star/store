@@ -1,6 +1,7 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { ICard } from '@/types/card'
+
 export const useDataStore = defineStore('data', () => {
   const data = ref<ICard[]>([])
   const initialData: ICard[] = [
@@ -192,6 +193,7 @@ export const useDataStore = defineStore('data', () => {
       card.deal = deal
     }
   }
+
   const updateFavourite = (cardId: number) => {
     const card = data.value.find((card) => card.id === cardId)
     if (card) {
