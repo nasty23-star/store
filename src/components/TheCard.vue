@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import type { ICard } from '../types/card'
-import { defineEmits } from 'vue'
+import { defineEmits, computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 // Принимаем пропс
-defineProps<{
+const props = defineProps<{
   card: ICard
 }>()
 
 const emit = defineEmits<{
-  'update:deal': [value: boolean]
+  'update:deal': [value: number]
   'toggle-favourite': [value: number]
 }>()
 
 const handleFavourite = (cardId: number) => {
   emit('toggle-favourite', cardId)
 }
-
-// const handleDeal = (cardId: number) => {
-//   emit('toggle-deal', cardId)
-// }
 </script>
 <template>
   <div class="card">
@@ -73,8 +72,8 @@ const handleFavourite = (cardId: number) => {
             </div>
           </div>
           <div class="sell-info_bottom">
-            <button class="button-add" @click="$emit('update:deal', true)">
-              Добавить в сделки
+            <button class="button-add" @click="$emit('update:deal', card.id)">
+              {{ card.deal && route.path === '/deals' ? 'Удалить из сделок' : 'Добавить в сделки' }}
             </button>
             <button class="favourite-add" @click="handleFavourite(card.id)">
               <svg
