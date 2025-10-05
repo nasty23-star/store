@@ -73,6 +73,12 @@ const toggleFavourite = (cardId: number) => {
 const searchInfo = (query: string) => {
   search.value = query
 }
+
+const disabled = ref(false)
+
+const payDeal = () => {
+  disabled.value = true
+}
 </script>
 
 <template>
@@ -106,6 +112,8 @@ const searchInfo = (query: string) => {
         @toggle-favourite="toggleFavourite"
       ></TheCard>
     </div>
+    {{ disabled }}
+    <button class="button-pay" :disabled="disabled" @click="payDeal">Оплатить</button>
   </div>
 </template>
 
@@ -155,5 +163,10 @@ const searchInfo = (query: string) => {
 }
 .button-pay:hover {
   background-color: #e0e3ee;
+}
+
+.button-pay:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>
