@@ -65,7 +65,7 @@ onMounted(() => {
   <div v-if="!visibleCards.length && cardsStore.data" class="empty-message">
     Под условия ничего не подходит
   </div>
-  <div v-else>
+  <div class="card-container" v-else>
     <TheCard
       v-for="card in visibleCards"
       :key="card.id"
@@ -94,5 +94,13 @@ onMounted(() => {
   font-weight: 500;
   font-style: medium;
   font-size: 25px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 </style>
