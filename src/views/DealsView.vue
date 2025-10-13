@@ -147,6 +147,7 @@ const payDeal = () => {
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
+  padding-bottom: 40px;
 }
 
 .button-pay {
