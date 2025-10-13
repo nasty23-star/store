@@ -123,21 +123,21 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
 .button-back {
   width: 212px;
   height: 50px;
-  background: #f4f5f9;
+  background: var(--background-color);
   font-size: 15px;
   font-weight: 600;
-  color: #2d3b87;
+  color: var(--dark-blue);
   border: none;
   border-radius: 10px;
 }
 
 .button-back:hover {
-  background-color: #e0e3ee;
+  background-color: var(----background-color-light);
 }
 
 .router-link-active {
-  background-color: #e0e3ee;
-  color: #2d3b87;
+  background-color: var(--background-color-light);
+  color: var(--dark-blue);
 }
 
 header {
@@ -170,7 +170,7 @@ nav {
   }
 
   a:hover {
-    background: #f4f5f9;
+    background: var(--background-color);
   }
 
   a:active {

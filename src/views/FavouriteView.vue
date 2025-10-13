@@ -10,7 +10,7 @@ const cardsStore = useDataStore()
 const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
 
 // Переменная для хранения карточек во время сортировки
-let visibleCards = ref<ICard[]>([])
+const visibleCards = ref<ICard[]>([])
 
 // Следим за изменениями favouriteCards и обновляем visibleCards
 watch(favouriteCards, (newFavouriteCards) => {
@@ -90,7 +90,7 @@ onMounted(() => {
   width: auto;
   display: flex;
   justify-content: center;
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 500;
   font-style: medium;
   font-size: 25px;

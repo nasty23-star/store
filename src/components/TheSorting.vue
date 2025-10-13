@@ -34,8 +34,8 @@ const handleAuctionCards = () => {
 .sorting-buttons {
   width: 304px;
   height: 40px;
-  background: #e0e3ee;
-  border: 1px solid #f4f5f9;
+  background: var(--background-color-light);
+  border: 1px solid var(--background-color);
   display: flex;
   border-radius: 10px;
 }
@@ -43,7 +43,7 @@ const handleAuctionCards = () => {
 .button-sort {
   border: none;
   height: 40px;
-  color: #969dc3;
+  color: var(--light-violet);
   font-size: 15px;
 }
 
@@ -62,6 +62,6 @@ const handleAuctionCards = () => {
 
 .button-sort:hover,
 .button-sort:active {
-  color: #2d3b87;
+  color: var(--dark-blue);
 }
 </style>

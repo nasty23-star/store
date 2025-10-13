@@ -135,7 +135,7 @@ const payDeal = () => {
   width: auto;
   display: flex;
   justify-content: center;
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 500;
   font-style: medium;
   font-size: 25px;
@@ -153,16 +153,16 @@ const payDeal = () => {
   margin-left: 16px;
   margin-bottom: 10px;
   width: 212px;
-  background: #f4f5f9;
+  background: var(--background-color);
   font-size: 15px;
   font-weight: 600;
-  color: #2d3b87;
+  color: var(--dark-blue);
   border: none;
   height: 40px;
   border-radius: 10px;
 }
 .button-pay:hover {
-  background-color: #e0e3ee;
+  background-color: var(--background-color-light);
 }
 
 .button-pay:disabled {

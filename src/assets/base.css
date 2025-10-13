@@ -1,3 +1,19 @@
+:root {
+  --background-color: #f4f5f9;
+  --background-color-light: #e0e3ee;
+  --dark-blue: #2d3b87;
+  --light-violet: #969dc3;
+  --violet: #616ca5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
 #app {
   display: flex;
   justify-content: center;

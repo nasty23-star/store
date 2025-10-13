@@ -44,7 +44,7 @@ const searchInfo = (event: Event) => {
   height: 40px;
   display: flex;
   border-radius: 10px;
-  border: 1px solid #e0e3ee;
+  border: 1px solid var(--background-color-light);
   padding: 2px;
 }
 
@@ -56,13 +56,13 @@ const searchInfo = (event: Event) => {
   margin-left: 8px;
   font-size: 15px;
   font-weight: 400;
-  color: #2d3b87;
+  color: var(--dark-blue);
 }
 
 .searching button {
   height: 40px;
   width: 40px;
-  background: #2d3b87;
+  background: var(--dark-blue);
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -81,8 +81,8 @@ const searchInfo = (event: Event) => {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #f4f5f9;
-  color: #616ca5;
+  background: var(--background-color);
+  color: var(--violet);
   text-align: center;
   border-radius: 3px;
   padding: 5px;

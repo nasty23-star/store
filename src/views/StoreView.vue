@@ -124,7 +124,7 @@ const searchInfo = (query: string) => {
   width: auto;
   display: flex;
   justify-content: center;
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 500;
   font-style: medium;
   font-size: 25px;

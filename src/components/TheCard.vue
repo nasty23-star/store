@@ -104,7 +104,7 @@ const handleFavourite = (cardId: number) => {
 .card {
   max-width: 1166px;
   height: 366px;
-  border: 1px solid #e0e3ee;
+  border: 1px solid var(--background-color-light);
   border-radius: 20px;
   margin: auto;
 }
@@ -135,27 +135,27 @@ const handleFavourite = (cardId: number) => {
 
 .main-data_type {
   height: 24px;
-  color: #969dc3;
+  color: var(--light-violet);
   font-weight: 400;
   font-size: 13px;
 }
 
 .main-data_title {
   height: 38px;
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 500;
   font-size: 15px;
   line-height: 125%;
 }
 
 .main-data_geolocation {
-  background: #f4f5f9;
+  background: var(--background-color);
   border-radius: 5px;
   border: none;
   font-weight: 400;
   font-size: 13px;
   height: 13px;
-  color: #616ca5;
+  color: var(--violet);
   width: max-content;
   padding-right: 8px;
   border-radius: 5px;
@@ -176,21 +176,21 @@ const handleFavourite = (cardId: number) => {
 }
 
 .main-data_rate {
-  color: #969dc3;
+  color: var(--light-violet);
   font-weight: 400;
   font-size: 13px;
   margin-bottom: 8px;
 }
 
 .main-data_rate span {
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 400;
   font-size: 13px;
 }
 
 .main-data_spec {
-  background: #f4f5f9;
-  color: #969dc3;
+  background: var(--background-color);
+  color: var(--light-violet);
   font-weight: 400;
   font-size: 13px;
   height: 48px;
@@ -205,13 +205,13 @@ const handleFavourite = (cardId: number) => {
 }
 
 .main-data_spec span {
-  color: #616ca5;
+  color: var(--violet);
   font-weight: 400;
   font-size: 13px;
 }
 
 .main-data_description {
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-weight: 400;
   font-size: 13px;
   line-height: 150%;
@@ -222,7 +222,7 @@ const handleFavourite = (cardId: number) => {
 .sell-info {
   width: 314px;
   height: 366px;
-  border: 1px solid #e0e3ee;
+  border: 1px solid var(--background-color-light);
   border-radius: 20px;
 }
 
@@ -235,7 +235,7 @@ const handleFavourite = (cardId: number) => {
 }
 
 .price {
-  color: #2d3b87;
+  color: var(--dark-blue);
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 4px;
@@ -253,7 +253,7 @@ const handleFavourite = (cardId: number) => {
   font-weight: 400;
   font-size: 14px;
   font-style: regular;
-  color: #969dc3;
+  color: var(--light-violet);
 }
 
 .quantity-wrapper .quantity,
@@ -261,7 +261,7 @@ const handleFavourite = (cardId: number) => {
   font-weight: 400;
   font-size: 13px;
   font-style: regular;
-  color: #2d3b87;
+  color: var(--dark-blue);
 }
 
 .sell-info_bottom {
@@ -275,10 +275,10 @@ const handleFavourite = (cardId: number) => {
 
 .button-add {
   width: 212px;
-  background: #f4f5f9;
+  background: var(--background-color);
   font-size: 15px;
   font-weight: 600;
-  color: #2d3b87;
+  color: var(--dark-blue);
   border: none;
   height: 50px;
   border-radius: 10px;
@@ -286,11 +286,11 @@ const handleFavourite = (cardId: number) => {
 
 .button-add:hover,
 .favourite-add:hover {
-  background-color: #e0e3ee;
+  background-color: var(--background-color-light);
 }
 
 .favourite-add {
-  background: #f4f5f9;
+  background: var(--background-color);
   width: 50px;
   height: 50px;
   border-radius: 10px;
@@ -308,8 +308,8 @@ const handleFavourite = (cardId: number) => {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #f4f5f9;
-  color: #616ca5;
+  background: var(--background-color);
+  color: var(--violet);
   text-align: center;
   border-radius: 3px;
   padding: 5px;
