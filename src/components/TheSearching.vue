@@ -20,7 +20,12 @@ const debouncedDoSomething = debounce(searchInfo, 500)
 </script>
 <template>
   <div class="searching">
-    <input type="text" :value="inputValue" :placeholder="placeholder" @input="debouncedDoSomething" />
+    <input
+      type="text"
+      :value="inputValue"
+      :placeholder="placeholder"
+      @input="debouncedDoSomething"
+    />
     <button @click="searchInfo">
       <svg
         width="20"
