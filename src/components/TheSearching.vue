@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue'
-// const props = defineProps({['modelValue', 'type'], ['placeholder', 'Поиск...']})
-// const emit = defineEmits<{
-//   (e: 'search-info', value: string): void
-// }>()
+import { debounce } from '../utils/debounce'
 const props = defineProps<{
   modelValue: string
   placeholder: string
@@ -12,15 +9,18 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 const inputValue = ref(props.modelValue)
+
 const searchInfo = (event: Event) => {
   const target = event.target as HTMLInputElement
   inputValue.value = target.value
   emit('update:modelValue', target.value)
 }
+
+const debouncedDoSomething = debounce(searchInfo, 500)
 </script>
 <template>
   <div class="searching">
-    <input type="text" :value="inputValue" :placeholder="placeholder" @input="searchInfo" />
+    <input type="text" :value="inputValue" :placeholder="placeholder" @input="debouncedDoSomething" />
     <button @click="searchInfo">
       <svg
         width="20"
