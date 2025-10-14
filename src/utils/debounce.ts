@@ -3,17 +3,14 @@
 // extends unknown[] - означает, что T должен быть массивом любых элементов
 // T будет автоматически определяться как тип аргументов функции
 
-export const debounce = <T extends unknown[]>(
-  cb: (...args: T) => void,
-  timeoutMs: number
-) => {
-  let timeoutId: number | null = null;
+export const debounce = <T extends unknown[]>(cb: (...args: T) => void, timeoutMs: number) => {
+  let timeoutId: number | null = null
 
   return (...args: T) => {
     if (timeoutId) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutId)
     }
 
-    timeoutId = setTimeout(() => cb(...args), timeoutMs);
-  };
-};
+    timeoutId = setTimeout(() => cb(...args), timeoutMs)
+  }
+}
