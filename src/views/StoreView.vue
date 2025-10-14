@@ -35,13 +35,13 @@ const visibleCards = computed(() => {
   if (search.value.trim()) {
     const query = search.value.toLowerCase().trim()
     filteredCards = filteredCards.filter(
-      (card) =>
-        card.title.toLowerCase().includes(query) ||
-        card.description.toLowerCase().includes(query) ||
-        card.seller.toLowerCase().includes(query) ||
-        card.location.toLowerCase().includes(query) ||
-        card.spec.toLowerCase().includes(query) ||
-        card.type.toLowerCase().includes(query),
+      (card) => card.title.toLowerCase().includes(query),
+      //||
+      // card.description.toLowerCase().includes(query) ||
+      // card.seller.toLowerCase().includes(query) ||
+      // card.location.toLowerCase().includes(query) ||
+      // card.spec.toLowerCase().includes(query) ||
+      // card.type.toLowerCase().includes(query),
     )
   }
 
