@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 // Принимаем пропс
-const props = defineProps<{
+defineProps<{
   card: ICard
 }>()
 
