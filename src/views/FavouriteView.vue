@@ -70,7 +70,6 @@ onMounted(() => {
       v-for="card in visibleCards"
       :key="card.id"
       :card="card"
-      :favourite="card.favourite"
       @update:deal="updateDeal(card.id)"
       @toggle-favourite="toggleFavourite"
     ></TheCard>
