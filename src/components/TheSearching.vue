@@ -51,6 +51,7 @@ const debouncedDoSomething = debounce(searchInfo, 500)
   border-radius: 10px;
   border: 1px solid var(--background-color-light);
   padding: 2px;
+  align-items: center;
 }
 
 .searching input {
