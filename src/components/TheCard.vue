@@ -321,4 +321,31 @@ const handleFavourite = (cardId: number) => {
 .favourite-add:hover .tooltip {
   visibility: visible;
 }
+
+@media (max-width: 1200px) {
+  .container {
+    width: 800px;
+  }
+  .card {
+    border: 1px solid var(--background-color-light);
+    border-radius: 20px;
+    margin: auto;
+    height: max-content;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+  }
+
+  .main-info {
+    width: auto;
+  }
+
+  .sell-info {
+    height: auto;
+    width: auto;
+  }
+}
 </style>

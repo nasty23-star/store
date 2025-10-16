@@ -112,7 +112,9 @@ const payDeal = () => {
         @toggle-favourite="toggleFavourite"
       ></TheCard>
     </div>
-    <button v-if="dealCards.length === 0" class="button-pay" :disabled="disabled" @click="payDeal">Оплатить</button>
+    <button v-if="dealCards.length === 0" class="button-pay" :disabled="disabled" @click="payDeal">
+      Оплатить
+    </button>
   </div>
 </template>
 

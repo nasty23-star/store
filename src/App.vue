@@ -177,4 +177,10 @@ nav {
     color: #2f4f4f;
   }
 }
+
+@media (max-width: 1200px) {
+  .container {
+    width: 700px;
+  }
+}
 </style>
