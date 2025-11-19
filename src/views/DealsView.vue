@@ -3,7 +3,6 @@ import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
 import { ref, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
-
 import { useDataStore } from '@/stores/data'
 
 const cardsStore = useDataStore()

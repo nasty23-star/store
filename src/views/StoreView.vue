@@ -4,6 +4,7 @@ import TheCard from '@/components/TheCard.vue'
 import { useDataStore } from '@/stores/data'
 import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
+
 const cardsStore = useDataStore()
 
 // Используем computed для реактивного отображения карточек В сделках
