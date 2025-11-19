@@ -125,8 +125,6 @@ State менеджер - pinia,  допустимо использование v
 
 Настроить форматтер по-другому.
 
-Стили по БЭМ.
-
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
