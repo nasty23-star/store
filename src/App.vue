@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import HomeIcon from './components/icons/HomeIcon.vue'
 import DealIcon from './components/icons/DealIcon.vue'
-import FavouriteNavIcon from './components/icons/FavouriteIcon.vue'
+import FavouriteNavIcon from './components/icons/FavouriteNavIcon.vue'
 
 const route = useRoute()
 const showBackButton = computed(() => route.path === '/favourite' || route.path === '/deals')
