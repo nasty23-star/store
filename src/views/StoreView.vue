@@ -88,10 +88,7 @@ const searchInfo = (query: string) => {
         @search-info="searchInfo"
       ></TheSearching>
     </div>
-    <!-- Сообщение если нет карточек в сделках -->
-    <div v-if="dealCards.length === 0" class="empty-message">В сделках пока что пусто</div>
-
-    <div v-else-if="visibleCards.length === 0" class="empty-message">
+  <div v-if="visibleCards.length === 0" class="empty-message">
       Под выбранные условия ничего не подходит
     </div>
     <div class="card-container" v-else>
@@ -138,9 +135,5 @@ const searchInfo = (query: string) => {
   flex-wrap: wrap;
   row-gap: 20px;
   padding-bottom: 40px;
-}
-
-.favourite-add:hover .tooltip {
-  visibility: visible;
 }
 </style>
