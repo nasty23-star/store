@@ -6,7 +6,6 @@ import { initialData } from '@/data/initial'
 export const useDataStore = defineStore('data', () => {
   const data = ref<ICard[]>([])
 
-
   const loadFromLocalStorage = () => {
     const storedData = localStorage.getItem('data')
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue'
 import { debounce } from '../utils/debounce'
-import SearchIcon from './icons/SearchIcon.vue';
+import SearchIcon from './icons/SearchIcon.vue'
 
 const props = defineProps<{
   modelValue: string

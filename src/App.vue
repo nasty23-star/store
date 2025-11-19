@@ -18,19 +18,16 @@ const showBackButton = computed(() => route.path === '/favourite' || route.path 
     </div>
     <header class="header">
       <nav class="navigation">
-        <router-link to="/favourite" class="nav-link" :class="{ active: $route.path === '/home' }"
-          >
+        <router-link to="/favourite" class="nav-link" :class="{ active: $route.path === '/home' }">
           <FavouriteNavIcon />
           Избранное</router-link
         >
-        <router-link to="/" class="nav-link"
-          >
+        <router-link to="/" class="nav-link">
           <HomeIcon />
           Главная</router-link
         >
 
-        <router-link to="/deals" class="nav-link"
-          >
+        <router-link to="/deals" class="nav-link">
           <DealIcon />
           Сделки</router-link
         >
