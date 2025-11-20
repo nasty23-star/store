@@ -5,6 +5,7 @@ import { ref, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
 import { useDataStore } from '@/stores/data'
 import { useFiltering } from '@/composables/useFiltering'
+import { useSearching } from '@/composables/useSearching'
 
 const cardsStore = useDataStore()
 
@@ -12,22 +13,13 @@ const cardsStore = useDataStore()
 const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === true))
 
 // Состояния фильтрации
-const search = ref('')
-
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
 const { allTypesFilteredCards } = useFiltering(dealCards.value, currentFilter)
 
-const searchResults = computed(() => {
-  if (!search.value.trim()) return allTypesFilteredCards.value
-
-  // Применяем поиск, если есть поисковый запрос
-  let filteredCards = cardsStore.data
-  const query = search.value.toLowerCase().trim()
-  filteredCards = filteredCards.filter((card) => card.title.toLowerCase().includes(query))
-
-  return filteredCards
-})
+// Поиск
+const search = ref('')
+const { searchResults } = useSearching(allTypesFilteredCards, search)
 
 const visibleCards = computed(() => searchResults.value)
 
@@ -93,7 +85,7 @@ const payDeal = () => {
         @toggle-favourite="toggleFavourite"
       ></TheCard>
     </div>
-    <button v-if="dealCards.length !== 0" class="button-pay" :disabled="disabled" @click="payDeal">
+    <button v-if="searchResults.length !== 0" class="button-pay" :disabled="disabled" @click="payDeal">
       Оплатить
     </button>
   </div>

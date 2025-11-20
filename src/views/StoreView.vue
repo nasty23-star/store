@@ -5,24 +5,17 @@ import { useDataStore } from '@/stores/data'
 import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
 import { useFiltering } from '@/composables/useFiltering'
+import { useSearching } from '@/composables/useSearching'
 
 const cardsStore = useDataStore()
 
 // Состояния фильтрации
-const search = ref('')
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 const { allTypesFilteredCards } = useFiltering(cardsStore.data, currentFilter)
 
-const searchResults = computed(() => {
-  if (!search.value.trim()) return allTypesFilteredCards.value
-
-  // Применяем поиск, если есть поисковый запрос
-  let filteredCards = cardsStore.data
-  const query = search.value.toLowerCase().trim()
-  filteredCards = filteredCards.filter((card) => card.title.toLowerCase().includes(query))
-
-  return filteredCards
-})
+// Поиск
+const search = ref('')
+const { searchResults } = useSearching(allTypesFilteredCards, search)
 
 const visibleCards = computed(() => searchResults.value)
 
