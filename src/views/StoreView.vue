@@ -7,16 +7,13 @@ import TheSearching from '@/components/TheSearching.vue'
 
 const cardsStore = useDataStore()
 
-// Используем computed для реактивного отображения карточек В сделках
-const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === true))
-
 // Состояния фильтрации
 const search = ref('')
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
 // Единый computed для всех фильтров
 const visibleCards = computed(() => {
-  let filteredCards = dealCards.value
+  let filteredCards = cardsStore.data
 
   // Применяем фильтр по типу
   switch (currentFilter.value) {
@@ -88,7 +85,7 @@ const searchInfo = (query: string) => {
         @search-info="searchInfo"
       ></TheSearching>
     </div>
-  <div v-if="visibleCards.length === 0" class="empty-message">
+    <div v-if="visibleCards.length === 0" class="empty-message">
       Под выбранные условия ничего не подходит
     </div>
     <div class="card-container" v-else>
