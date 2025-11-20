@@ -4,33 +4,14 @@ import TheCard from '@/components/TheCard.vue'
 import { useDataStore } from '@/stores/data'
 import TheSorting from '@/components/TheSorting.vue'
 import TheSearching from '@/components/TheSearching.vue'
+import { useFiltering } from '@/composables/useFiltering'
 
 const cardsStore = useDataStore()
 
 // Состояния фильтрации
 const search = ref('')
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
-
-// Единый computed для всех фильтров
-const allTypesFilteredCards = computed(() => {
-  let filteredCards = cardsStore.data
-
-  // Применяем фильтр по типу
-  switch (currentFilter.value) {
-    case 'direct':
-      filteredCards = filteredCards.filter((card) => card.type === 'Прямые продажи')
-      break
-    case 'auction':
-      filteredCards = filteredCards.filter((card) => card.type === 'Аукцион')
-      break
-    case 'all':
-    default:
-      // Все карточки, без фильтрации по типу
-      break
-  }
-
-  return filteredCards
-})
+const { allTypesFilteredCards } = useFiltering(cardsStore.data, currentFilter)
 
 const searchResults = computed(() => {
   if (!search.value.trim()) return allTypesFilteredCards.value

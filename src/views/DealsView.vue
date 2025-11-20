@@ -4,6 +4,7 @@ import TheSearching from '@/components/TheSearching.vue'
 import { ref, computed } from 'vue'
 import TheCard from '@/components/TheCard.vue'
 import { useDataStore } from '@/stores/data'
+import { useFiltering } from '@/composables/useFiltering'
 
 const cardsStore = useDataStore()
 
@@ -12,28 +13,10 @@ const dealCards = computed(() => cardsStore.data.filter((card) => card.deal === 
 
 // Состояния фильтрации
 const search = ref('')
+
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
-// Единый computed для всех фильтров
-const allTypesFilteredCards = computed(() => {
-  let filteredCards = dealCards.value
-
-  // Применяем фильтр по типу
-  switch (currentFilter.value) {
-    case 'direct':
-      filteredCards = filteredCards.filter((card) => card.type === 'Прямые продажи')
-      break
-    case 'auction':
-      filteredCards = filteredCards.filter((card) => card.type === 'Аукцион')
-      break
-    case 'all':
-    default:
-      // Все карточки, без фильтрации по типу
-      break
-  }
-
-  return filteredCards
-})
+const { allTypesFilteredCards } = useFiltering(dealCards.value, currentFilter)
 
 const searchResults = computed(() => {
   if (!search.value.trim()) return allTypesFilteredCards.value
