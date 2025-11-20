@@ -15,7 +15,7 @@ const search = ref('')
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
 // Единый computed для всех фильтров
-const visibleCards = computed(() => {
+const allTypesFilteredCards = computed(() => {
   let filteredCards = dealCards.value
 
   // Применяем фильтр по типу
@@ -32,22 +32,21 @@ const visibleCards = computed(() => {
       break
   }
 
+  return filteredCards
+})
+
+const searchResults = computed(() => {
+  if (!search.value.trim()) return allTypesFilteredCards.value
+
   // Применяем поиск, если есть поисковый запрос
-  if (search.value.trim()) {
-    const query = search.value.toLowerCase().trim()
-    filteredCards = filteredCards.filter(
-      (card) => card.title.toLowerCase().includes(query),
-      // ||
-      // card.description.toLowerCase().includes(query) ||
-      // card.seller.toLowerCase().includes(query) ||
-      // card.location.toLowerCase().includes(query) ||
-      // card.spec.toLowerCase().includes(query) ||
-      // card.type.toLowerCase().includes(query),
-    )
-  }
+  let filteredCards = cardsStore.data
+  const query = search.value.toLowerCase().trim()
+  filteredCards = filteredCards.filter((card) => card.title.toLowerCase().includes(query))
 
   return filteredCards
 })
+
+const visibleCards = computed(() => searchResults.value)
 
 const updateDeal = (cardId: number) => {
   cardsStore.updateDeal(cardId, false)
