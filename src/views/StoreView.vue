@@ -29,20 +29,6 @@ const visibleCards = computed(() => {
       break
   }
 
-  // Применяем поиск, если есть поисковый запрос
-  if (search.value.trim()) {
-    const query = search.value.toLowerCase().trim()
-    filteredCards = filteredCards.filter(
-      (card) => card.title.toLowerCase().includes(query),
-      //||
-      // card.description.toLowerCase().includes(query) ||
-      // card.seller.toLowerCase().includes(query) ||
-      // card.location.toLowerCase().includes(query) ||
-      // card.spec.toLowerCase().includes(query) ||
-      // card.type.toLowerCase().includes(query),
-    )
-  }
-
   return filteredCards
 })
 
