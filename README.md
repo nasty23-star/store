@@ -127,6 +127,10 @@ State менеджер - pinia,  допустимо использование v
 
 Подсветка фильтрации, сейчас не видно отфильтрованы карточки или нет.
 
+Тёмная тема.
+
+Деплой.
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
