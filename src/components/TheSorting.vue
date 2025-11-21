@@ -24,7 +24,6 @@ const handleAuctionCards = () => {
 </template>
 <style scoped>
 .sorting {
-  width: 1200px;
   height: 48px;
   margin-bottom: 36px;
   display: flex;
