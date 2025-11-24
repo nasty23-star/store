@@ -24,7 +24,7 @@ const { searchResults } = useSearching(allTypesFilteredCards, search)
 const visibleCards = computed(() => searchResults.value)
 
 const updateDeal = (cardId: number) => {
-  cardsStore.updateDeal(cardId, false)
+  cardsStore.updateDeal(cardId)
 }
 
 const chooseAll = () => {
@@ -85,7 +85,12 @@ const payDeal = () => {
         @toggle-favourite="toggleFavourite"
       ></TheCard>
     </div>
-    <button v-if="searchResults.length !== 0" class="button-pay" :disabled="disabled" @click="payDeal">
+    <button
+      v-if="searchResults.length !== 0"
+      class="button-pay"
+      :disabled="disabled"
+      @click="payDeal"
+    >
       Оплатить
     </button>
   </div>

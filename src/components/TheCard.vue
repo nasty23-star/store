@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { ICard } from '../types/card'
 import { defineEmits } from 'vue'
-import { useRoute } from 'vue-router'
 import LocationIcon from './icons/LocationIcon.vue'
 import FavouriteIcon from './icons/FavouriteIcon.vue'
 
-const route = useRoute()
 defineProps<{
   card: ICard
 }>()
@@ -61,7 +59,7 @@ const handleFavourite = (cardId: number) => {
           </div>
           <div class="sell-info_bottom">
             <button class="button-add" @click="$emit('update:deal', card.id)">
-              {{ card.deal && route.path === '/deals' ? 'Удалить из сделок' : 'Добавить в сделки' }}
+              {{ card.deal ? 'Удалить из сделок' : 'Добавить в сделки' }}
             </button>
             <button class="favourite-add" @click="handleFavourite(card.id)">
               <FavouriteIcon :is-favourite="card.favourite" />

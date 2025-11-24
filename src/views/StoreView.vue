@@ -20,7 +20,10 @@ const { searchResults } = useSearching(allTypesFilteredCards, search)
 const visibleCards = computed(() => searchResults.value)
 
 const updateDeal = (cardId: number) => {
-  cardsStore.updateDeal(cardId, false)
+  const card = cardsStore.data.find((card) => card.id === cardId)
+  if (card) {
+    cardsStore.updateDeal(cardId)
+  }
 }
 
 const chooseAll = () => {

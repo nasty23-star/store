@@ -18,7 +18,10 @@ watch(favouriteCards, (newFavouriteCards) => {
 })
 
 const updateDeal = (cardId: number) => {
-  cardsStore.updateDeal(cardId, true)
+  const card = cardsStore.data.find((card) => card.id === cardId)
+  if (card) {
+    cardsStore.updateDeal(cardId)
+  }
 }
 
 const chooseAll = () => {

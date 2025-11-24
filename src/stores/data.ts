@@ -36,10 +36,10 @@ export const useDataStore = defineStore('data', () => {
     { deep: true }, // важно для отслеживания вложенных изменений
   )
 
-  const updateDeal = (cardId: number, deal: boolean) => {
+  const updateDeal = (cardId: number) => {
     const card = data.value.find((card) => card.id === cardId)
     if (card) {
-      card.deal = deal
+      card.deal = !card.deal
     }
   }
 
