@@ -2,20 +2,12 @@
 import { useDataStore } from '@/stores/data'
 import TheCard from '../components/TheCard.vue'
 import TheSorting from '../components/TheSorting.vue'
-import { computed, onMounted, ref, watch } from 'vue'
-import type { ICard } from '@/types/card'
+import { computed, ref, watch } from 'vue'
+import { useFiltering } from '@/composables/useFiltering'
 
 const cardsStore = useDataStore()
 
 const favouriteCards = computed(() => cardsStore.data.filter((card) => card.favourite))
-
-// Переменная для хранения карточек во время сортировки
-const visibleCards = ref<ICard[]>([])
-
-// Следим за изменениями favouriteCards и обновляем visibleCards
-watch(favouriteCards, (newFavouriteCards) => {
-  visibleCards.value = newFavouriteCards
-})
 
 const updateDeal = (cardId: number) => {
   const card = cardsStore.data.find((card) => card.id === cardId)
@@ -24,21 +16,30 @@ const updateDeal = (cardId: number) => {
   }
 }
 
-const chooseAll = () => {
-  return (visibleCards.value = favouriteCards.value)
-}
+// Состояния фильтрации
+const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
 
-const chooseAuction = () => {
-  return (visibleCards.value = favouriteCards.value.filter(
-    (card) => card.type !== 'Прямые продажи' && card.type !== 'Все',
-  ))
+const { allTypesFilteredCards, filterActual } = useFiltering(favouriteCards.value, currentFilter)
+
+watch(filterActual, (newFilter) => {
+  console.log('Filter actual in component:', newFilter)
+})
+
+const chooseAll = () => {
+  currentFilter.value = 'all'
 }
 
 const chooseDirect = () => {
-  return (visibleCards.value = favouriteCards.value.filter(
-    (card) => card.type !== 'Аукцион' && card.type !== 'Все',
-  ))
+  currentFilter.value = 'direct'
 }
+
+const chooseAuction = () => {
+  currentFilter.value = 'auction'
+}
+
+const visibleCards = computed(() => {
+  return allTypesFilteredCards.value || favouriteCards.value
+})
 
 const toggleFavourite = (cardId: number) => {
   // Находим карточку и инвертируем значение favourite
@@ -47,15 +48,12 @@ const toggleFavourite = (cardId: number) => {
     cardsStore.updateFavourite(cardId)
   }
 }
-
-onMounted(() => {
-  visibleCards.value = favouriteCards.value
-})
 </script>
 
 <template>
   <div class="sorting">
     <TheSorting
+      :filter-actual="filterActual"
       @update:all="chooseAll"
       @update:direct="chooseDirect"
       @update:auction="chooseAuction"

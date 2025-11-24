@@ -1,7 +1,9 @@
 import type { ICard } from '@/types/card'
-import { computed, type Ref } from 'vue'
+import { computed, ref, watch, type Ref } from 'vue'
 
 export function useFiltering(array: ICard[], currentFilter: Ref<'direct' | 'auction' | 'all'>) {
+  const filterActual = ref<'direct' | 'auction' | 'all'>('all')
+
   const allTypesFilteredCards = computed(() => {
     let filteredCards = array
 
@@ -24,5 +26,6 @@ export function useFiltering(array: ICard[], currentFilter: Ref<'direct' | 'auct
 
   return {
     allTypesFilteredCards,
+    filterActual: currentFilter,
   }
 }

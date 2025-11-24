@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import TheCard from '@/components/TheCard.vue'
 import { useDataStore } from '@/stores/data'
 import TheSorting from '@/components/TheSorting.vue'
@@ -11,7 +11,12 @@ const cardsStore = useDataStore()
 
 // Состояния фильтрации
 const currentFilter = ref<'all' | 'direct' | 'auction'>('all')
-const { allTypesFilteredCards } = useFiltering(cardsStore.data, currentFilter)
+
+const { allTypesFilteredCards, filterActual } = useFiltering(cardsStore.data, currentFilter)
+
+watch(filterActual, (newFilter) => {
+  console.log('Filter actual in component:', newFilter)
+})
 
 // Поиск
 const search = ref('')
@@ -51,6 +56,7 @@ const searchInfo = (query: string) => {
   <div class="container">
     <div class="sorting-container">
       <TheSorting
+        :filter-actual="filterActual"
         @update:all="chooseAll"
         @update:direct="chooseDirect"
         @update:auction="chooseAuction"
