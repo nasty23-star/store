@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ICard } from '../types/card'
-import { defineEmits } from 'vue'
 import LocationIcon from './icons/LocationIcon.vue'
 import FavouriteIcon from './icons/FavouriteIcon.vue'
 
